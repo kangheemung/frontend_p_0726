@@ -5,28 +5,32 @@ const Posts =()=>{
     let [lists, setLists] = useState([])
     
     useEffect(()=>{
-       axios.get("https://swapi.dev/api/people/")
+       axios.get("http://52.194.223.223:8081/posts/index")
        .then((res) =>{
            console.log(res.data)
            
-           setLists(res.data.results)
+          setLists(res.data.posts)
        })
        .catch((err) => {
            console.error(err)
        })
    },[])
+   
    console.log(lists)
  
  
    const pLists = lists.map((list) =>{
        return (
-           <p>{list.name}さんは身長{list.height}cmです。</p>
+           <div>
+               <h3>{list.title}타이틀</h3>
+               <p>{list.body}내용。</p>
+           </div>
            )
     })
  
     return(
         <div>
-          <h2>starwars list</h2>
+          <h2>post list</h2>
           {pLists}
   
         </div>
